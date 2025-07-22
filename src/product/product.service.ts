@@ -19,15 +19,14 @@ export class ProductService {
     async findAll() {
         const cacheKey = 'products_all';
         const cached = await this.cacheManager.get(cacheKey);
-        console.log('ver cache', cached);
         if (cached) {
+            console.log('ver cache:', cached); 
             console.log('📦 Usando datos del caché');
             return cached;
         }
- 
+
         console.log('💾 Consultando BD y guardando en caché');
         const products = await this.productRepo.find();
-        // Set cache with 30 seconds TTL (30000 milliseconds)
         await this.cacheManager.set(cacheKey, products, 30000);
         return products;
     }
