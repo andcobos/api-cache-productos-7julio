@@ -27,7 +27,8 @@ export class ProductService {
  
         console.log('💾 Consultando BD y guardando en caché');
         const products = await this.productRepo.find();
-        await this.cacheManager.set(cacheKey, products, 30);
+        // Set cache with 30 seconds TTL (30000 milliseconds)
+        await this.cacheManager.set(cacheKey, products, 30000);
         return products;
     }
  

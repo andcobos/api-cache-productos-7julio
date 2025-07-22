@@ -9,7 +9,7 @@ export class CacheConfigService implements CacheOptionsFactory {
             store: redisStore,
             host: 'localhost',
             port: 6379,
-            ttl: 10,
+            ttl: 30 * 1000, // 30 seconds in milliseconds
             isGlobal: true,
         };
     }
